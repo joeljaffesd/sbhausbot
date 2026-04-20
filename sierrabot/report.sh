@@ -27,6 +27,7 @@ function trim(s) {
     if ($0 ~ /^\|---/) next
     change = trim($2)
     if (change == "" || change == "Change") next
+    if (change != "Added") next
 
     address = trim($3)
     city = trim($4)
@@ -54,7 +55,7 @@ function trim(s) {
 }
 END {
     if (count == 0) {
-        printf "No listing changes found.\n"
+        printf "No new listings found.\n"
     }
 }
 ' "$COMP_FILE")"
